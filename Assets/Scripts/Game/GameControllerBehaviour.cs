@@ -1,4 +1,5 @@
 ﻿using Cameras;
+using Characters;
 using DG.Tweening;
 using Grids;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Game
         [SerializeField] private CameraView _cameraView;
         [SerializeField] private GameSettings _gameSettings;
         [SerializeField] private CellView _cellPrefab;
+        [SerializeField] private CharacterView _characterView;
         
         private GameController _gameController;
         
@@ -20,6 +22,7 @@ namespace Game
             {
                 CameraView = _cameraView,
                 GridCellPrefab = _cellPrefab,
+                CharacterView = _characterView,
             };
             _gameController = new GameController(Contexts.sharedInstance, args, _gameSettings);
         }

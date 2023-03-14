@@ -8,19 +8,22 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int GridsCell = 0;
-    public const int GridsCellPosition = 1;
-    public const int GridsCellState = 2;
-    public const int GridsWalkable = 3;
-    public const int GridsCellPositionListener = 4;
-    public const int GridsCellStateListener = 5;
-    public const int PathsFindPathRequest = 6;
-    public const int ViewsAsset = 7;
-    public const int ViewsView = 8;
+    public const int CharactersCharacter = 0;
+    public const int GridsCell = 1;
+    public const int GridsCellPosition = 2;
+    public const int GridsCellState = 3;
+    public const int GridsWalkable = 4;
+    public const int GridsCellPositionListener = 5;
+    public const int GridsCellStateListener = 6;
+    public const int PathsFindPathRequest = 7;
+    public const int PathsFollowPath = 8;
+    public const int ViewsAsset = 9;
+    public const int ViewsView = 10;
 
-    public const int TotalComponents = 9;
+    public const int TotalComponents = 11;
 
     public static readonly string[] componentNames = {
+        "CharactersCharacter",
         "GridsCell",
         "GridsCellPosition",
         "GridsCellState",
@@ -28,11 +31,13 @@ public static class GameComponentsLookup {
         "GridsCellPositionListener",
         "GridsCellStateListener",
         "PathsFindPathRequest",
+        "PathsFollowPath",
         "ViewsAsset",
         "ViewsView"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(Characters.CharacterComponent),
         typeof(Grids.CellComponent),
         typeof(Grids.CellPosition),
         typeof(Grids.CellState),
@@ -40,6 +45,7 @@ public static class GameComponentsLookup {
         typeof(GridsCellPositionListenerComponent),
         typeof(GridsCellStateListenerComponent),
         typeof(Paths.FindPathRequest),
+        typeof(Paths.FollowPathComponent),
         typeof(Views.AssetComponent),
         typeof(Views.ViewComponent)
     };

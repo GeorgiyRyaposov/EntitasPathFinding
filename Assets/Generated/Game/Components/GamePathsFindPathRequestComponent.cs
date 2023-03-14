@@ -11,19 +11,21 @@ public partial class GameEntity {
     public Paths.FindPathRequest pathsFindPathRequest { get { return (Paths.FindPathRequest)GetComponent(GameComponentsLookup.PathsFindPathRequest); } }
     public bool hasPathsFindPathRequest { get { return HasComponent(GameComponentsLookup.PathsFindPathRequest); } }
 
-    public void AddPathsFindPathRequest(UnityEngine.Vector2Int newStart, UnityEngine.Vector2Int newFinish) {
+    public void AddPathsFindPathRequest(UnityEngine.Vector2Int newStart, UnityEngine.Vector2Int newFinish, bool newFollowPath) {
         var index = GameComponentsLookup.PathsFindPathRequest;
         var component = (Paths.FindPathRequest)CreateComponent(index, typeof(Paths.FindPathRequest));
         component.Start = newStart;
         component.Finish = newFinish;
+        component.FollowPath = newFollowPath;
         AddComponent(index, component);
     }
 
-    public void ReplacePathsFindPathRequest(UnityEngine.Vector2Int newStart, UnityEngine.Vector2Int newFinish) {
+    public void ReplacePathsFindPathRequest(UnityEngine.Vector2Int newStart, UnityEngine.Vector2Int newFinish, bool newFollowPath) {
         var index = GameComponentsLookup.PathsFindPathRequest;
         var component = (Paths.FindPathRequest)CreateComponent(index, typeof(Paths.FindPathRequest));
         component.Start = newStart;
         component.Finish = newFinish;
+        component.FollowPath = newFollowPath;
         ReplaceComponent(index, component);
     }
 

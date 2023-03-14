@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using Cameras;
 using Entitas;
-using Game;
-using Grids;
 using UnityEngine;
 
 namespace Inputs
@@ -10,14 +7,12 @@ namespace Inputs
     public class CursorPositionSystem : ReactiveSystem<InputEntity>
     {
         private readonly Contexts _contexts;
-        private readonly ICameraView _cameraView;
-        private readonly IGameSettings _gameSettings;
+        private readonly IGroup<GameEntity> _characters;
 
         public CursorPositionSystem(Contexts contexts) : base(contexts.input)
         {
             _contexts = contexts;
-            _cameraView = _contexts.config.gameSceneArguments.value.CameraView;
-            _gameSettings = _contexts.config.gameSettings.value;
+            _characters = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.CharactersCharacter));
         }
         
         protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context) =>
@@ -29,17 +24,33 @@ namespace Inputs
         {
             foreach (var entity in entities)
             {
+                var activeCharacter = GetActiveCharacter();
+                
                 var position = entity.cursorInput.value.Position;
-                var e = _contexts.game.GetCellWithPosition(position);
-                if (e != null)
+                var followPath = entity.cursorInput.value.Pressed;
+                var cell = _contexts.game.GetCellWithPosition(position);
+                if (cell != null)
                 {
                     var findPathEntity = _contexts.game.CreateEntity();
-                    findPathEntity.AddPathsFindPathRequest(Vector2Int.zero, position);
-                    //e.ReplaceGridsCellState((int) ECellState.Highlight);
+                    findPathEntity.AddPathsFindPathRequest(activeCharacter.gridsCellPosition.Value, position, followPath);
                 }
                 
                 entity.Destroy();
             }
+        }
+
+        private GameEntity GetActiveCharacter()
+        {
+            foreach (var character in _characters)
+            {
+                if (character.charactersCharacter.Active)
+                {
+                    return character;
+                }
+            }
+
+            Debug.LogError($"<color=red>Failed to find active character</color>");
+            return null;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Cameras;
+using Characters;
 using Entitas.CodeGeneration.Attributes;
 using Grids;
-using UnityEngine;
 
 namespace Game
 {
@@ -9,6 +9,7 @@ namespace Game
     {
         public ICameraView CameraView { get; set; }
         public CellView GridCellPrefab { get; set; }
+        public CharacterView CharacterView { get; set; }
     }
 
     [Config, Unique, ComponentName("GameSceneArguments")]
@@ -16,5 +17,6 @@ namespace Game
     {
         ICameraView CameraView { get; }
         CellView GridCellPrefab { get; }
+        CharacterView CharacterView { get; }
     }
 }

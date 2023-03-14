@@ -29,6 +29,9 @@ namespace Inputs
             _inputActions.Player.Cursor.performed += OnCursor;
             _inputActions.Player.Cursor.canceled += OnCursor;
 
+            _inputActions.Player.CursorClick.performed += OnCursorClick;
+            _inputActions.Player.CursorClick.canceled += OnCursorClick;
+
             _inputActions.Player.Enable();
         }
         
@@ -69,14 +72,11 @@ namespace Inputs
         private void OnCursor(InputAction.CallbackContext context)
         {
             _cursorPosition = context.ReadValue<Vector2>();
-            
-            var buttonDown = false;
-            if (context.control.device is Mouse mouse)
-            {
-                buttonDown = mouse.leftButton.isPressed;
-            }
-
-            _cursorPressed = buttonDown;
+        }
+        
+        private void OnCursorClick(InputAction.CallbackContext context)
+        {
+            _cursorPressed = context.phase != InputActionPhase.Canceled;
         }
     }
 }

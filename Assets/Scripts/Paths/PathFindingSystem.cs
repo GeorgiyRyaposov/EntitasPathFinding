@@ -36,22 +36,38 @@ namespace Paths
                 var request = entity.pathsFindPathRequest;
                 var path = FindPath(request.Start, request.Finish);
 
-                foreach (var cell in _cells)
-                {
-                    cell.ReplaceGridsCellState(0);
-                }
+                ClearCellsState();
 
-                for (int i = 0; i < path.Count; i++)
+                HighlightPath(path);
+
+                if (request.FollowPath)
                 {
-                    var cell = _contexts.game.GetCellWithPosition(path[i]);
-                    if (cell != null)
-                    {
-                        cell.ReplaceGridsCellState((int)ECellState.Highlight);
-                    }
+                    var followPath = _contexts.game.CreateEntity();
+                    followPath.AddPathsFollowPath(path);
                 }
+                
                 entity.Destroy();
             }
-            
+        }
+
+        private void HighlightPath(List<Vector2Int> path)
+        {
+            for (int i = 0; i < path.Count; i++)
+            {
+                var cell = _contexts.game.GetCellWithPosition(path[i]);
+                if (cell != null)
+                {
+                    cell.ReplaceGridsCellState((int) ECellState.Highlight);
+                }
+            }
+        }
+
+        private void ClearCellsState()
+        {
+            foreach (var cell in _cells)
+            {
+                cell.ReplaceGridsCellState(0);
+            }
         }
 
         private readonly List<int> _openList = new List<int>();
@@ -184,6 +200,8 @@ namespace Paths
                 currentNode = cameFromNode;
             }
 
+            path.Reverse();
+            
             return path;
         }
         

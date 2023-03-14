@@ -8,5 +8,6 @@ namespace Paths
     {
         public Vector2Int Start;
         public Vector2Int Finish;
+        public bool FollowPath;
     }
 }

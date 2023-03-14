@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Cameras
 {
@@ -11,7 +10,7 @@ namespace Cameras
         private void Start()
         {
             var gridSize = Contexts.sharedInstance.config.gameSettings.value.GridSize;
-            transform.localPosition = new Vector3(gridSize.x * 0.5f, transform.localPosition.y, 0);
+            transform.localPosition = new Vector3(gridSize.x * 0.5f, transform.localPosition.y, -gridSize.y * 0.5f);
         }
 
         public void MovePosition(Vector3 delta)

@@ -13,6 +13,7 @@ namespace Game
             Add(new CameraInputSystem(contexts));
             Add(new CursorPositionSystem(contexts));
             Add(new PathFindingSystem(contexts));
+            Add(new FollowPathSystem(contexts));
             
             // Events (Generated)
             Add(new GameEventSystems(contexts));
