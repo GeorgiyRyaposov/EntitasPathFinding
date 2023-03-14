@@ -9,7 +9,8 @@
 public sealed class GameEventSystems : Feature {
 
     public GameEventSystems(Contexts contexts) {
-        Add(new GridsCellPositionEventSystem(contexts)); // priority: 0
-        Add(new GridsCellStateEventSystem(contexts)); // priority: 0
+        Add(new CellPositionEventSystem(contexts)); // priority: 0
+        Add(new CellStateEventSystem(contexts)); // priority: 0
+        Add(new DestroyedEventSystem(contexts)); // priority: 0
     }
 }

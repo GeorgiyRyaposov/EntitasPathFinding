@@ -44,7 +44,7 @@ namespace Inputs
         private void UpdateCameraMovementValue()
         {
             var e = _contexts.input.CreateEntity();
-            e.AddInputsCameraPositionInput(_movement);
+            e.AddCameraPositionInput(_movement);
         }
 
         private void UpdateCursorInput()

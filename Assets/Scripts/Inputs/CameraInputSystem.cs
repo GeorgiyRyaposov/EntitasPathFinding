@@ -20,15 +20,15 @@ namespace Inputs
         }
         
         protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context) =>
-            context.CreateCollector(InputMatcher.InputsCameraPositionInput);
+            context.CreateCollector(InputMatcher.CameraPositionInput);
 
-        protected override bool Filter(InputEntity entity) => entity.hasInputsCameraPositionInput;
+        protected override bool Filter(InputEntity entity) => entity.hasCameraPositionInput;
 
         protected override void Execute(List<InputEntity> entities)
         {
             foreach (var entity in entities)
             {
-                var value = Time.deltaTime * _gameSettings.CameraSens * entity.inputsCameraPositionInput.Value;
+                var value = Time.deltaTime * _gameSettings.CameraSens * entity.cameraPositionInput.Value;
                 _cameraView.MovePosition(new Vector3(value.x, 0, value.y));
                 entity.Destroy();
             }

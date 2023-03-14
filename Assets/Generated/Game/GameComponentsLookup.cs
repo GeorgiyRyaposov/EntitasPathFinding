@@ -8,42 +8,48 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int CharactersCharacter = 0;
-    public const int GridsCell = 1;
-    public const int GridsCellPosition = 2;
-    public const int GridsCellState = 3;
-    public const int GridsWalkable = 4;
-    public const int GridsCellPositionListener = 5;
-    public const int GridsCellStateListener = 6;
-    public const int PathsFindPathRequest = 7;
-    public const int PathsFollowPath = 8;
-    public const int ViewsAsset = 9;
-    public const int ViewsView = 10;
+    public const int CellPositionListener = 0;
+    public const int CellStateListener = 1;
+    public const int Character = 2;
+    public const int Destroyed = 3;
+    public const int DestroyedListener = 4;
+    public const int Cell = 5;
+    public const int CellPosition = 6;
+    public const int CellState = 7;
+    public const int Walkable = 8;
+    public const int FindPathRequest = 9;
+    public const int FollowPath = 10;
+    public const int Asset = 11;
+    public const int View = 12;
 
-    public const int TotalComponents = 11;
+    public const int TotalComponents = 13;
 
     public static readonly string[] componentNames = {
-        "CharactersCharacter",
-        "GridsCell",
-        "GridsCellPosition",
-        "GridsCellState",
-        "GridsWalkable",
-        "GridsCellPositionListener",
-        "GridsCellStateListener",
-        "PathsFindPathRequest",
-        "PathsFollowPath",
-        "ViewsAsset",
-        "ViewsView"
+        "CellPositionListener",
+        "CellStateListener",
+        "Character",
+        "Destroyed",
+        "DestroyedListener",
+        "Cell",
+        "CellPosition",
+        "CellState",
+        "Walkable",
+        "FindPathRequest",
+        "FollowPath",
+        "Asset",
+        "View"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(CellPositionListenerComponent),
+        typeof(CellStateListenerComponent),
         typeof(Characters.CharacterComponent),
+        typeof(Common.DestroyedComponent),
+        typeof(DestroyedListenerComponent),
         typeof(Grids.CellComponent),
         typeof(Grids.CellPosition),
         typeof(Grids.CellState),
         typeof(Grids.Walkable),
-        typeof(GridsCellPositionListenerComponent),
-        typeof(GridsCellStateListenerComponent),
         typeof(Paths.FindPathRequest),
         typeof(Paths.FollowPathComponent),
         typeof(Views.AssetComponent),

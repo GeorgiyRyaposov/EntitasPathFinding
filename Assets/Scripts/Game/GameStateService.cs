@@ -4,7 +4,7 @@ namespace Game
 {
     public class GameStateService : IGameStateService
     {
-        public bool IsInputLocked { get; private set; }
+        public bool IsInputLocked { get; private set; } = true;
         public void LockInput(bool lockInput)
         {
             IsInputLocked = lockInput;

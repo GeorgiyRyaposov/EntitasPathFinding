@@ -12,8 +12,8 @@ public partial class Contexts
         game.AddEntityIndex(new PrimaryEntityIndex<GameEntity, Vector2Int>(
             Cell,
             game.GetGroup(GameMatcher
-                .AllOf(GameMatcher.GridsCell, GameMatcher.GridsCellPosition)),
-            (e, c) => (c as CellPosition)?.Value ?? e.gridsCellPosition.Value));
+                .AllOf(GameMatcher.Cell, GameMatcher.CellPosition)),
+            (e, c) => (c as CellPosition)?.Value ?? e.cellPosition.Value));
     }
 }
 

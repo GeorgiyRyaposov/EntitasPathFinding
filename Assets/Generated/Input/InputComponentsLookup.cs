@@ -9,13 +9,13 @@
 public static class InputComponentsLookup {
 
     public const int CursorInput = 0;
-    public const int InputsCameraPositionInput = 1;
+    public const int CameraPositionInput = 1;
 
     public const int TotalComponents = 2;
 
     public static readonly string[] componentNames = {
         "CursorInput",
-        "InputsCameraPositionInput"
+        "CameraPositionInput"
     };
 
     public static readonly System.Type[] componentTypes = {

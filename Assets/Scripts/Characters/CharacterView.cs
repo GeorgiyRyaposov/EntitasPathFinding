@@ -6,7 +6,7 @@ using Views;
 
 namespace Characters
 {
-    public class CharacterView : MonoBehaviour, IView, IGridsCellPositionListener
+    public class CharacterView : MonoBehaviour, IView, ICellPositionListener
     {
         [SerializeField] private Material _redMaterial;
         [SerializeField] private Material _blueMaterial;
@@ -18,14 +18,14 @@ namespace Characters
         {
             gameObject.Link(entity);
             _linkedEntity = (GameEntity)entity;
-            _linkedEntity.AddGridsCellPositionListener(this);
+            _linkedEntity.AddCellPositionListener(this);
 
-            _renderer.material = _linkedEntity.charactersCharacter.Type == 0
+            _renderer.material = _linkedEntity.character.Type == 0
                 ? _redMaterial
                 : _blueMaterial;
         }
 
-        public void OnGridsCellPosition(GameEntity entity, Vector2Int value)
+        public void OnCellPosition(GameEntity entity, Vector2Int value)
         {
             var delay = Contexts.sharedInstance.config.gameSettings.value.PathStepDelay;
             var targetPos = new Vector3(value.x, 0, value.y);

@@ -7,6 +7,7 @@ namespace Game
         private readonly Systems _systems;
         private readonly Systems _lockableSystems;
         private readonly Contexts _contexts;
+        private readonly CleanUpSystems _cleanUpSystems;
 
         public GameController(Contexts contexts, GameSceneArguments gameSceneArgs, IGameSettings gameSettings)
         {
@@ -19,6 +20,7 @@ namespace Game
             
             _systems = new GameSystems(contexts);
             _lockableSystems = new LockableSystems(contexts);
+            _cleanUpSystems = new CleanUpSystems(contexts);
         }
         
         public void Initialize()
@@ -36,6 +38,8 @@ namespace Game
                 _lockableSystems.Execute();
             }
             _lockableSystems.Cleanup();
+            
+            _cleanUpSystems.Cleanup();
         }
     }
 }

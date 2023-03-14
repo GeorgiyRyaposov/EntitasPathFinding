@@ -12,7 +12,7 @@ namespace Inputs
         public CursorPositionSystem(Contexts contexts) : base(contexts.input)
         {
             _contexts = contexts;
-            _characters = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.CharactersCharacter));
+            _characters = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Character));
         }
         
         protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context)
@@ -34,10 +34,8 @@ namespace Inputs
                 if (cell != null)
                 {
                     var findPathEntity = _contexts.game.CreateEntity();
-                    findPathEntity.AddPathsFindPathRequest(activeCharacter.gridsCellPosition.Value, position, followPath);
+                    findPathEntity.AddFindPathRequest(activeCharacter.cellPosition.Value, position, followPath);
                 }
-                
-                entity.Destroy();
             }
         }
 
@@ -45,7 +43,7 @@ namespace Inputs
         {
             foreach (var character in _characters)
             {
-                if (character.charactersCharacter.Active)
+                if (character.character.Active)
                 {
                     return character;
                 }

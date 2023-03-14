@@ -5,7 +5,7 @@ using Views;
 
 namespace Grids
 {
-    public class CellView : MonoBehaviour, IView, IGridsCellStateListener
+    public class CellView : MonoBehaviour, IView, ICellStateListener
     {
         [SerializeField] private MeshRenderer _renderer;
         [SerializeField] private Material _errorMaterial;
@@ -18,10 +18,10 @@ namespace Grids
         {
             gameObject.Link(entity);
             _linkedEntity = (GameEntity)entity;
-            _linkedEntity.AddGridsCellStateListener(this);
+            _linkedEntity.AddCellStateListener(this);
         }
 
-        public void OnGridsCellState(GameEntity entity, int value)
+        public void OnCellState(GameEntity entity, int value)
         {
             var state = (ECellState)value;
             UpdateState(state);

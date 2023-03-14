@@ -21,19 +21,19 @@ namespace Paths
             _gridSize = _contexts.config.gameSettings.value.GridSize;
 
             _pathNodes = new PathNode[_gridSize.x * _gridSize.y];
-            _cells = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.GridsCell, GameMatcher.GridsCellPosition));
+            _cells = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Cell, GameMatcher.CellPosition));
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>
-            context.CreateCollector(GameMatcher.PathsFindPathRequest);
+            context.CreateCollector(GameMatcher.FindPathRequest);
 
-        protected override bool Filter(GameEntity entity) => entity.hasPathsFindPathRequest;
+        protected override bool Filter(GameEntity entity) => entity.hasFindPathRequest;
 
         protected override void Execute(List<GameEntity> entities)
         {
             foreach (var entity in entities)
             {
-                var request = entity.pathsFindPathRequest;
+                var request = entity.findPathRequest;
                 var path = FindPath(request.Start, request.Finish);
 
                 ClearCellsState();
@@ -43,7 +43,7 @@ namespace Paths
                 if (request.FollowPath)
                 {
                     var followPath = _contexts.game.CreateEntity();
-                    followPath.AddPathsFollowPath(path);
+                    followPath.AddFollowPath(path);
                 }
                 
                 entity.Destroy();
@@ -57,7 +57,7 @@ namespace Paths
                 var cell = _contexts.game.GetCellWithPosition(path[i]);
                 if (cell != null)
                 {
-                    cell.ReplaceGridsCellState((int) ECellState.Highlight);
+                    cell.ReplaceCellState((int) ECellState.Highlight);
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace Paths
         {
             foreach (var cell in _cells)
             {
-                cell.ReplaceGridsCellState(0);
+                cell.ReplaceCellState(0);
             }
         }
 
@@ -84,8 +84,8 @@ namespace Paths
             //reset values
             foreach (var cell in _cells)
             {
-                var x = cell.gridsCellPosition.Value.x;
-                var y = cell.gridsCellPosition.Value.y;
+                var x = cell.cellPosition.Value.x;
+                var y = cell.cellPosition.Value.y;
                 var index = SquareGridCellUtil.CalculateIndex(x, y, _gridSize.x);
                 var node = new PathNode()
                 {
@@ -94,7 +94,7 @@ namespace Paths
                     Index = index,
                     GCost = int.MaxValue,
                     HCost = CalculateDistance(new Vector2Int(x, y), finish),
-                    IsWalkable = cell.isGridsWalkable,
+                    IsWalkable = cell.isWalkable,
                     CameFromIndex = -1,
                 };
                 node.CalculateFCost();

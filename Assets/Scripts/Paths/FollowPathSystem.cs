@@ -16,21 +16,21 @@ namespace Paths
         {
             _contexts = contexts;
             
-            _characters = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.CharactersCharacter));
+            _characters = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Character));
             _pathStepDelay = contexts.config.gameSettings.value.PathStepDelay;
         }
         
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>
-            context.CreateCollector(GameMatcher.PathsFollowPath);
+            context.CreateCollector(GameMatcher.FollowPath);
 
-        protected override bool Filter(GameEntity entity) => entity.hasPathsFollowPath;
+        protected override bool Filter(GameEntity entity) => entity.hasFollowPath;
 
         protected override void Execute(List<GameEntity> entities)
         {
             foreach (var entity in entities)
             {
                 var character = GetActiveCharacter();
-                CoroutineHelper.Run(FollowPath(character, entity.pathsFollowPath.Value));
+                CoroutineHelper.Run(FollowPath(character, entity.followPath.Value));
 
                 entity.Destroy();
                 break;
@@ -45,7 +45,7 @@ namespace Paths
             for (int i = 0; i < path.Count; i++)
             {
                 var position = path[i];
-                character.ReplaceGridsCellPosition(position);
+                character.ReplaceCellPosition(position);
                 yield return delay;
             }
             
@@ -61,7 +61,7 @@ namespace Paths
         {
             foreach (var character in _characters)
             {
-                if (character.charactersCharacter.Active)
+                if (character.character.Active)
                 {
                     return character;
                 }

@@ -1,6 +1,6 @@
 ﻿using Grids;
 using Inputs;
-using Paths;
+using Views;
 
 namespace Game
 {
@@ -11,6 +11,8 @@ namespace Game
             // Input
             Add(new InputSystem(contexts));
             Add(new CameraInputSystem(contexts));
+            
+            Add(new AddViewSystem(contexts));
             
             // Events (Generated)
             Add(new GameEventSystems(contexts));

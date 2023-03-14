@@ -1,4 +1,5 @@
-﻿using Entitas;
+﻿using Characters;
+using Entitas;
 using Game;
 using UnityEngine;
 
@@ -29,8 +30,8 @@ namespace Grids
                 }
             }
 
-            CreateCharacter(0, 0, true, root);
-            CreateCharacter(gridSize.x - 1, gridSize.y - 1, false, root);
+            CreateCharacter(0, 0, true);
+            CreateCharacter(gridSize.x - 1, gridSize.y - 1, false);
         }
         
         private void CreateCell(int x, int y, Transform root)
@@ -41,28 +42,15 @@ namespace Grids
             cell.transform.position = new Vector3(x, 0, y);
             cell.Link(entity);
             
-            entity.isGridsCell = true;
-            entity.isGridsWalkable = true;
-            entity.AddGridsCellPosition(new Vector2Int(x, y));
-            entity.AddGridsCellState((int)ECellState.None);
+            entity.isCell = true;
+            entity.isWalkable = true;
+            entity.AddCellPosition(new Vector2Int(x, y));
+            entity.AddCellState((int)ECellState.None);
         }
         
-        private void CreateCharacter(int x, int y, bool active, Transform root)
+        private void CreateCharacter(int x, int y, bool active)
         {
-            var entity = _contexts.game.CreateEntity();
-            entity.AddCharactersCharacter(active, active ? 0 : 1);
-            entity.AddGridsCellPosition(new Vector2Int(x, y));
-            
-            var character = Object.Instantiate(_gameSceneArgs.CharacterView, root);
-            character.transform.position = new Vector3(x, 0, y);
-            character.Link(entity);
-            
-
-            var cell = _contexts.game.GetCellWithPosition(new Vector2Int(x, y));
-            if (cell != null)
-            {
-                cell.isGridsWalkable = false;
-            }
+            _contexts.game.CreateCharacter(x, y, active);
         }
     }
 }
