@@ -8,6 +8,10 @@ namespace Characters
 {
     public class CharacterView : MonoBehaviour, IView, IGridsCellPositionListener
     {
+        [SerializeField] private Material _redMaterial;
+        [SerializeField] private Material _blueMaterial;
+        [SerializeField] private MeshRenderer _renderer;
+        
         private GameEntity _linkedEntity;
         
         public void Link(IEntity entity)
@@ -15,6 +19,10 @@ namespace Characters
             gameObject.Link(entity);
             _linkedEntity = (GameEntity)entity;
             _linkedEntity.AddGridsCellPositionListener(this);
+
+            _renderer.material = _linkedEntity.charactersCharacter.Type == 0
+                ? _redMaterial
+                : _blueMaterial;
         }
 
         public void OnGridsCellPosition(GameEntity entity, Vector2Int value)

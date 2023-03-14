@@ -6,5 +6,6 @@ namespace Characters
     public class CharacterComponent : IComponent
     {
         public bool Active;
+        public int Type;
     }
 }

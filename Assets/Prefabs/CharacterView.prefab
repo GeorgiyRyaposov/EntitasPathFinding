@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273dc800d9a3458c9121389f27aaeaca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _redMaterial: {fileID: 2100000, guid: 0eda4c35afd779e4fb333e15b7acbdc1, type: 2}
+  _blueMaterial: {fileID: 2100000, guid: 5052329cdf9e234419c142555959af48, type: 2}
+  _renderer: {fileID: 163420084191219175}
 --- !u!1 &163420084191219173
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,6 @@ namespace Paths
     [Game]
     public class FollowPathComponent : IComponent
     {
-        public List<Vector2Int> Path;
+        public List<Vector2Int> Value;
     }
 }

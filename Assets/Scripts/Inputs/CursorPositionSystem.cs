@@ -15,8 +15,10 @@ namespace Inputs
             _characters = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.CharactersCharacter));
         }
         
-        protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context) =>
-            context.CreateCollector(InputMatcher.CursorInput);
+        protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context)
+        { 
+            return context.CreateCollector(InputMatcher.CursorInput);
+        }
 
         protected override bool Filter(InputEntity entity) => entity.hasCursorInput;
 

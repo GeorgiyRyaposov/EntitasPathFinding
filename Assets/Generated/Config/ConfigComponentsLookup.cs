@@ -10,16 +10,19 @@ public static class ConfigComponentsLookup {
 
     public const int GameSceneArguments = 0;
     public const int GameSettings = 1;
+    public const int GameStateService = 2;
 
-    public const int TotalComponents = 2;
+    public const int TotalComponents = 3;
 
     public static readonly string[] componentNames = {
         "GameSceneArguments",
-        "GameSettings"
+        "GameSettings",
+        "GameStateService"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(GameSceneArgumentsComponent),
-        typeof(GameSettingsComponent)
+        typeof(GameSettingsComponent),
+        typeof(GameStateServiceComponent)
     };
 }

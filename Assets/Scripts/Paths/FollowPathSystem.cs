@@ -30,14 +30,17 @@ namespace Paths
             foreach (var entity in entities)
             {
                 var character = GetActiveCharacter();
-                CoroutineHelper.Run(FollowPath(character, entity.pathsComponentFollowPathComponent.Path));
-                
+                CoroutineHelper.Run(FollowPath(character, entity.pathsFollowPath.Value));
+
                 entity.Destroy();
+                break;
             }
         }
 
         private IEnumerator FollowPath(GameEntity character, List<Vector2Int> path)
         {
+            LockInput(true);
+            
             var delay = new WaitForSeconds(_pathStepDelay);
             for (int i = 0; i < path.Count; i++)
             {
@@ -45,6 +48,13 @@ namespace Paths
                 character.ReplaceGridsCellPosition(position);
                 yield return delay;
             }
+            
+            LockInput(false);
+        }
+
+        private void LockInput(bool lockInput)
+        {
+            _contexts.config.gameStateService.value.IsInputLocked = lockInput;
         }
 
         private GameEntity GetActiveCharacter()

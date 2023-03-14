@@ -50,13 +50,13 @@ namespace Grids
         private void CreateCharacter(int x, int y, bool active, Transform root)
         {
             var entity = _contexts.game.CreateEntity();
+            entity.AddCharactersCharacter(active, active ? 0 : 1);
+            entity.AddGridsCellPosition(new Vector2Int(x, y));
             
             var character = Object.Instantiate(_gameSceneArgs.CharacterView, root);
             character.transform.position = new Vector3(x, 0, y);
             character.Link(entity);
             
-            entity.AddCharactersCharacter(active);
-            entity.AddGridsCellPosition(new Vector2Int(x, y));
 
             var cell = _contexts.game.GetCellWithPosition(new Vector2Int(x, y));
             if (cell != null)

@@ -8,20 +8,20 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Paths.FollowPathComponent pathsComponentFollowPathComponent { get { return (Paths.FollowPathComponent)GetComponent(GameComponentsLookup.PathsFollowPath); } }
+    public Paths.FollowPathComponent pathsFollowPath { get { return (Paths.FollowPathComponent)GetComponent(GameComponentsLookup.PathsFollowPath); } }
     public bool hasPathsFollowPath { get { return HasComponent(GameComponentsLookup.PathsFollowPath); } }
 
-    public void AddPathsFollowPath(System.Collections.Generic.List<UnityEngine.Vector2Int> newPath) {
+    public void AddPathsFollowPath(System.Collections.Generic.List<UnityEngine.Vector2Int> newValue) {
         var index = GameComponentsLookup.PathsFollowPath;
         var component = (Paths.FollowPathComponent)CreateComponent(index, typeof(Paths.FollowPathComponent));
-        component.Path = newPath;
+        component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplacePathsFollowPath(System.Collections.Generic.List<UnityEngine.Vector2Int> newPath) {
+    public void ReplacePathsFollowPath(System.Collections.Generic.List<UnityEngine.Vector2Int> newValue) {
         var index = GameComponentsLookup.PathsFollowPath;
         var component = (Paths.FollowPathComponent)CreateComponent(index, typeof(Paths.FollowPathComponent));
-        component.Path = newPath;
+        component.Value = newValue;
         ReplaceComponent(index, component);
     }
 
