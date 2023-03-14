@@ -54,7 +54,7 @@ namespace Paths
 
         private void LockInput(bool lockInput)
         {
-            _contexts.config.gameStateService.value.IsInputLocked = lockInput;
+            _contexts.config.gameStateService.value.LockInput(lockInput);
         }
 
         private GameEntity GetActiveCharacter()
