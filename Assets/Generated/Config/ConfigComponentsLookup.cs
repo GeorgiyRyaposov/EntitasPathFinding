@@ -6,26 +6,20 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public static class GameComponentsLookup {
+public static class ConfigComponentsLookup {
 
-    public const int GridsCellPosition = 0;
-    public const int GridsCellPositionListener = 1;
-    public const int ViewsAsset = 2;
-    public const int ViewsView = 3;
+    public const int GameSceneArguments = 0;
+    public const int GameSettings = 1;
 
-    public const int TotalComponents = 4;
+    public const int TotalComponents = 2;
 
     public static readonly string[] componentNames = {
-        "GridsCellPosition",
-        "GridsCellPositionListener",
-        "ViewsAsset",
-        "ViewsView"
+        "GameSceneArguments",
+        "GameSettings"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(Grids.CellPosition),
-        typeof(GridsCellPositionListenerComponent),
-        typeof(Views.AssetComponent),
-        typeof(Views.ViewComponent)
+        typeof(GameSceneArgumentsComponent),
+        typeof(GameSettingsComponent)
     };
 }
