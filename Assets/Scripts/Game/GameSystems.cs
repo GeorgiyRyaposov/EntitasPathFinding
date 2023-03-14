@@ -11,8 +11,11 @@ namespace Game
             Add(new InputSystem(contexts));
             Add(new CameraInputSystem(contexts));
             
-            Add(new FillGridSystem(contexts));
+            // Events
+            Add(new GameEventSystems(contexts));
             
+            Add(new FillGridSystem(contexts));
+            Add(new CursorPositionSystem(contexts));
         }
     }
 }

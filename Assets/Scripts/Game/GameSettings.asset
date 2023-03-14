@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   gridSize: {x: 20, y: 20}
-  _cameraSens: 2
+  _cameraSens: 10

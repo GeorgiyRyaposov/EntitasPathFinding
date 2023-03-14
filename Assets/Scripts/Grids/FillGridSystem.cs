@@ -33,11 +33,13 @@ namespace Grids
         {
             var entity = _contexts.game.CreateEntity();
             
-            entity.AddGridsCellPosition(new Vector2Int(x, y));
-
             var cell = Object.Instantiate(_gameSceneArgs.GridCellPrefab, root);
             cell.transform.position = new Vector3(x, 0, y);
             cell.Link(entity);
+            
+            entity.AddGridsCell(true);
+            entity.AddGridsCellPosition(new Vector2Int(x, y));
+            entity.AddGridsCellState((int)ECellState.None);
         }
     }
 }

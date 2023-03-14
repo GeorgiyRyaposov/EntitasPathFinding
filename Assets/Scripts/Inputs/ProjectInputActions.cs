@@ -21,7 +21,7 @@ namespace Inputs
             ""id"": ""8901c146-48ce-4408-b358-c9cda007c699"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""CameraMove"",
                     ""type"": ""Value"",
                     ""id"": ""0a276835-0835-4157-9342-b3bc87f81c55"",
                     ""expectedControlType"": ""Vector2"",
@@ -29,7 +29,7 @@ namespace Inputs
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Look"",
+                    ""name"": ""Cursor"",
                     ""type"": ""Value"",
                     ""id"": ""d38bb720-27dc-4a74-8f97-86795d65cfea"",
                     ""expectedControlType"": ""Vector2"",
@@ -37,7 +37,7 @@ namespace Inputs
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""CursorClick"",
                     ""type"": ""Button"",
                     ""id"": ""604a226d-8b20-4e3c-9180-b953a29a2740"",
                     ""expectedControlType"": ""Button"",
@@ -53,7 +53,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Move"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -64,7 +64,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -75,7 +75,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -86,7 +86,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -97,7 +97,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -108,7 +108,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -119,7 +119,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -130,7 +130,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -141,7 +141,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -152,7 +152,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -163,7 +163,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Move"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -174,7 +174,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Move"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -185,18 +185,18 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Look"",
+                    ""action"": ""Cursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
-                    ""path"": ""<Pointer>/delta"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse;Touch"",
-                    ""action"": ""Look"",
+                    ""action"": ""Cursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -207,7 +207,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Look"",
+                    ""action"": ""Cursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -218,7 +218,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Fire"",
+                    ""action"": ""CursorClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -229,7 +229,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
+                    ""action"": ""CursorClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -240,7 +240,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch"",
-                    ""action"": ""Fire"",
+                    ""action"": ""CursorClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -251,7 +251,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Fire"",
+                    ""action"": ""CursorClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -262,7 +262,7 @@ namespace Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Fire"",
+                    ""action"": ""CursorClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -840,9 +840,9 @@ namespace Inputs
 }");
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-            m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-            m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-            m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+            m_Player_CameraMove = m_Player.FindAction("CameraMove", throwIfNotFound: true);
+            m_Player_Cursor = m_Player.FindAction("Cursor", throwIfNotFound: true);
+            m_Player_CursorClick = m_Player.FindAction("CursorClick", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -904,16 +904,16 @@ namespace Inputs
         // Player
         private readonly InputActionMap m_Player;
         private IPlayerActions m_PlayerActionsCallbackInterface;
-        private readonly InputAction m_Player_Move;
-        private readonly InputAction m_Player_Look;
-        private readonly InputAction m_Player_Fire;
+        private readonly InputAction m_Player_CameraMove;
+        private readonly InputAction m_Player_Cursor;
+        private readonly InputAction m_Player_CursorClick;
         public struct PlayerActions
         {
             private @ProjectInputActions m_Wrapper;
             public PlayerActions(@ProjectInputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Move => m_Wrapper.m_Player_Move;
-            public InputAction @Look => m_Wrapper.m_Player_Look;
-            public InputAction @Fire => m_Wrapper.m_Player_Fire;
+            public InputAction @CameraMove => m_Wrapper.m_Player_CameraMove;
+            public InputAction @Cursor => m_Wrapper.m_Player_Cursor;
+            public InputAction @CursorClick => m_Wrapper.m_Player_CursorClick;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -923,28 +923,28 @@ namespace Inputs
             {
                 if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
                 {
-                    @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                    @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                    @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                    @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                    @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                    @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                    @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                    @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                    @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                    @CameraMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMove;
+                    @CameraMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMove;
+                    @CameraMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMove;
+                    @Cursor.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCursor;
+                    @Cursor.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCursor;
+                    @Cursor.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCursor;
+                    @CursorClick.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCursorClick;
+                    @CursorClick.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCursorClick;
+                    @CursorClick.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCursorClick;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    @Move.started += instance.OnMove;
-                    @Move.performed += instance.OnMove;
-                    @Move.canceled += instance.OnMove;
-                    @Look.started += instance.OnLook;
-                    @Look.performed += instance.OnLook;
-                    @Look.canceled += instance.OnLook;
-                    @Fire.started += instance.OnFire;
-                    @Fire.performed += instance.OnFire;
-                    @Fire.canceled += instance.OnFire;
+                    @CameraMove.started += instance.OnCameraMove;
+                    @CameraMove.performed += instance.OnCameraMove;
+                    @CameraMove.canceled += instance.OnCameraMove;
+                    @Cursor.started += instance.OnCursor;
+                    @Cursor.performed += instance.OnCursor;
+                    @Cursor.canceled += instance.OnCursor;
+                    @CursorClick.started += instance.OnCursorClick;
+                    @CursorClick.performed += instance.OnCursorClick;
+                    @CursorClick.canceled += instance.OnCursorClick;
                 }
             }
         }
@@ -1101,9 +1101,9 @@ namespace Inputs
         }
         public interface IPlayerActions
         {
-            void OnMove(InputAction.CallbackContext context);
-            void OnLook(InputAction.CallbackContext context);
-            void OnFire(InputAction.CallbackContext context);
+            void OnCameraMove(InputAction.CallbackContext context);
+            void OnCursor(InputAction.CallbackContext context);
+            void OnCursorClick(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

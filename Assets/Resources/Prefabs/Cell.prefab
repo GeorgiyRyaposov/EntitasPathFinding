@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 299fb6fcd21b48a3b111fae0020a9d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 9187932044874311971}
+  _errorMaterial: {fileID: 2100000, guid: 71b165414cc52c54e89b04a720410a18, type: 2}
+  _defaultMaterial: {fileID: 2100000, guid: fd236d6f6f6868e4aab583f70d4af2e7, type: 2}
+  _highlightMaterial: {fileID: 2100000, guid: 5c7b20d69a2096e479063d9cd29a993b, type: 2}
 --- !u!1 &9187932044874311969
 GameObject:
   m_ObjectHideFlags: 0
