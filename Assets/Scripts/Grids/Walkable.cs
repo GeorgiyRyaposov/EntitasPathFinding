@@ -3,7 +3,7 @@
 namespace Grids
 {
     [Game]
-    public sealed class CellComponent : IComponent
+    public sealed class Walkable : IComponent
     {
         
     }

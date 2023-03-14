@@ -1,5 +1,6 @@
 ﻿using Grids;
 using Inputs;
+using Paths;
 
 namespace Game
 {
@@ -10,12 +11,13 @@ namespace Game
             // Input
             Add(new InputSystem(contexts));
             Add(new CameraInputSystem(contexts));
+            Add(new CursorPositionSystem(contexts));
+            Add(new PathFindingSystem(contexts));
             
-            // Events
+            // Events (Generated)
             Add(new GameEventSystems(contexts));
             
             Add(new FillGridSystem(contexts));
-            Add(new CursorPositionSystem(contexts));
         }
     }
 }

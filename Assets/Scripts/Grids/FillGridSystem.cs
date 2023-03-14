@@ -37,7 +37,8 @@ namespace Grids
             cell.transform.position = new Vector3(x, 0, y);
             cell.Link(entity);
             
-            entity.AddGridsCell(true);
+            entity.isGridsCell = true;
+            entity.isGridsWalkable = true;
             entity.AddGridsCellPosition(new Vector2Int(x, y));
             entity.AddGridsCellState((int)ECellState.None);
         }

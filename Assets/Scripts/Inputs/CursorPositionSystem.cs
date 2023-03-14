@@ -33,7 +33,9 @@ namespace Inputs
                 var e = _contexts.game.GetCellWithPosition(position);
                 if (e != null)
                 {
-                    e.ReplaceGridsCellState((int) ECellState.Highlight);
+                    var findPathEntity = _contexts.game.CreateEntity();
+                    findPathEntity.AddPathsFindPathRequest(Vector2Int.zero, position);
+                    //e.ReplaceGridsCellState((int) ECellState.Highlight);
                 }
                 
                 entity.Destroy();

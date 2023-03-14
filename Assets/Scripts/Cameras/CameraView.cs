@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Cameras
 {
@@ -6,6 +7,12 @@ namespace Cameras
     public class CameraView : MonoBehaviour, ICameraView
     {
         [SerializeField] private Camera _camera;
+
+        private void Start()
+        {
+            var gridSize = Contexts.sharedInstance.config.gameSettings.value.GridSize;
+            transform.localPosition = new Vector3(gridSize.x * 0.5f, transform.localPosition.y, 0);
+        }
 
         public void MovePosition(Vector3 delta)
         {

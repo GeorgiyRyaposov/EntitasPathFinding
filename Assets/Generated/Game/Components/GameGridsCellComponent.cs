@@ -8,25 +8,25 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity {
 
-    public Grids.CellComponent gridsCell { get { return (Grids.CellComponent)GetComponent(GameComponentsLookup.GridsCell); } }
-    public bool hasGridsCell { get { return HasComponent(GameComponentsLookup.GridsCell); } }
+    static readonly Grids.CellComponent gridsCellComponent = new Grids.CellComponent();
 
-    public void AddGridsCell(bool newWalkable) {
-        var index = GameComponentsLookup.GridsCell;
-        var component = (Grids.CellComponent)CreateComponent(index, typeof(Grids.CellComponent));
-        component.Walkable = newWalkable;
-        AddComponent(index, component);
-    }
+    public bool isGridsCell {
+        get { return HasComponent(GameComponentsLookup.GridsCell); }
+        set {
+            if (value != isGridsCell) {
+                var index = GameComponentsLookup.GridsCell;
+                if (value) {
+                    var componentPool = GetComponentPool(index);
+                    var component = componentPool.Count > 0
+                            ? componentPool.Pop()
+                            : gridsCellComponent;
 
-    public void ReplaceGridsCell(bool newWalkable) {
-        var index = GameComponentsLookup.GridsCell;
-        var component = (Grids.CellComponent)CreateComponent(index, typeof(Grids.CellComponent));
-        component.Walkable = newWalkable;
-        ReplaceComponent(index, component);
-    }
-
-    public void RemoveGridsCell() {
-        RemoveComponent(GameComponentsLookup.GridsCell);
+                    AddComponent(index, component);
+                } else {
+                    RemoveComponent(index);
+                }
+            }
+        }
     }
 }
 

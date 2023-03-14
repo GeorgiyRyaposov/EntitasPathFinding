@@ -11,19 +11,23 @@ public static class GameComponentsLookup {
     public const int GridsCell = 0;
     public const int GridsCellPosition = 1;
     public const int GridsCellState = 2;
-    public const int GridsCellPositionListener = 3;
-    public const int GridsCellStateListener = 4;
-    public const int ViewsAsset = 5;
-    public const int ViewsView = 6;
+    public const int GridsWalkable = 3;
+    public const int GridsCellPositionListener = 4;
+    public const int GridsCellStateListener = 5;
+    public const int PathsFindPathRequest = 6;
+    public const int ViewsAsset = 7;
+    public const int ViewsView = 8;
 
-    public const int TotalComponents = 7;
+    public const int TotalComponents = 9;
 
     public static readonly string[] componentNames = {
         "GridsCell",
         "GridsCellPosition",
         "GridsCellState",
+        "GridsWalkable",
         "GridsCellPositionListener",
         "GridsCellStateListener",
+        "PathsFindPathRequest",
         "ViewsAsset",
         "ViewsView"
     };
@@ -32,8 +36,10 @@ public static class GameComponentsLookup {
         typeof(Grids.CellComponent),
         typeof(Grids.CellPosition),
         typeof(Grids.CellState),
+        typeof(Grids.Walkable),
         typeof(GridsCellPositionListenerComponent),
         typeof(GridsCellStateListenerComponent),
+        typeof(Paths.FindPathRequest),
         typeof(Views.AssetComponent),
         typeof(Views.ViewComponent)
     };
