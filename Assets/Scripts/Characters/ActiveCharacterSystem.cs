@@ -20,17 +20,12 @@ namespace Characters
             return context.CreateCollector(InputMatcher.CursorInput);
         }
 
-        protected override bool Filter(InputEntity entity) => entity.hasCursorInput;
+        protected override bool Filter(InputEntity entity) => entity.hasCursorInput && !entity.cursorInput.value.OverUI;
 
         protected override void Execute(List<InputEntity> entities)
         {
             foreach (var entity in entities)
             {
-                if (entity.cursorInput.value.OverUI)
-                {
-                    continue;
-                }
-                
                 var activeCharacter = GetActiveCharacter();
                 
                 var position = entity.cursorInput.value.Position;

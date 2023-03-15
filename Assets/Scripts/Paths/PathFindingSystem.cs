@@ -97,17 +97,17 @@ namespace Paths
                 var x = cell.cellPosition.Value.x;
                 var y = cell.cellPosition.Value.y;
                 var index = SquareGridCellUtil.CalculateIndex(x, y, _gridSize.x);
-                var node = new PathNode()
+                var node = new PathNode
                 {
                     X = x,
                     Y = y,
                     Index = index,
-                    GCost = int.MaxValue,
-                    HCost = CalculateDistance(new Vector2Int(x, y), finish),
+                    CurrentCost = int.MaxValue,
+                    ShortestCost = CalculateDistance(new Vector2Int(x, y), finish),
                     IsWalkable = cell.isWalkable,
                     CameFromIndex = -1,
                 };
-                node.CalculateFCost();
+                node.CalculateFinalCost();
                 
                 _pathNodes[index] = node;
             }
@@ -115,9 +115,9 @@ namespace Paths
             var endNodeIndex = SquareGridCellUtil.CalculateIndex(finish.x, finish.y, _gridSize.x);
             var startNode = _pathNodes[SquareGridCellUtil.CalculateIndex(start.x, start.y, _gridSize.x)];
 
-            startNode.GCost = 0;
-            startNode.HCost = CalculateDistance(start, finish);
-            startNode.CalculateFCost();
+            startNode.CurrentCost = 0;
+            startNode.ShortestCost = CalculateDistance(start, finish);
+            startNode.CalculateFinalCost();
 
             _pathNodes[startNode.Index] = startNode;
 
@@ -126,7 +126,7 @@ namespace Paths
 
             while (_openList.Count > 0)
             {
-                var currentNodeIndex = GetLowestFCostNode(_openList, _pathNodes);
+                var currentNodeIndex = GetLowestFinalCostNode(_openList, _pathNodes);
                 if (currentNodeIndex == endNodeIndex)
                 {
                     break;
@@ -160,15 +160,15 @@ namespace Paths
 
                     var neighbourNode = _pathNodes[neighbourIndex];
                     var currentNodeCell = new Vector2Int(currentNode.X, currentNode.Y);
-                    var tentativeGCost = currentNode.GCost + CalculateDistance(currentNodeCell, neighbourCell);
-                    if (tentativeGCost >= neighbourNode.GCost)
+                    var tentativeCurCost = currentNode.CurrentCost + CalculateDistance(currentNodeCell, neighbourCell);
+                    if (tentativeCurCost >= neighbourNode.CurrentCost)
                     {
                         continue;
                     }
 
                     neighbourNode.CameFromIndex = currentNodeIndex;
-                    neighbourNode.GCost = tentativeGCost;
-                    neighbourNode.CalculateFCost();
+                    neighbourNode.CurrentCost = tentativeCurCost;
+                    neighbourNode.CalculateFinalCost();
                     _pathNodes[neighbourNode.Index] = neighbourNode;
 
                     if (!_openList.Contains(neighbourNode.Index))
@@ -219,13 +219,13 @@ namespace Paths
             return index.x >= 0 && index.y >= 0 && index.x < gridSize.x && index.y < gridSize.y;
         }
         
-        private int GetLowestFCostNode(IReadOnlyList<int> openList, IReadOnlyList<PathNode> nodes)
+        private int GetLowestFinalCostNode(IReadOnlyList<int> openList, IReadOnlyList<PathNode> nodes)
         {
             var lowestNode = nodes[openList[0]];
             for (int i = 1; i < openList.Count; i++)
             {
                 var checkNode = nodes[openList[i]];
-                if (checkNode.FCost < lowestNode.FCost)
+                if (checkNode.FinalCost < lowestNode.FinalCost)
                 {
                     lowestNode = checkNode;
                 }

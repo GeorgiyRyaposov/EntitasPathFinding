@@ -10,17 +10,17 @@ namespace Paths
         
         public int Index;
         
-        public int GCost; //current path cost
-        public int HCost; //shortest path cost
-        public int FCost; //final path cost
+        public int CurrentCost;
+        public int ShortestCost;
+        public int FinalCost;
 
         public int CameFromIndex;
 
         public bool IsWalkable;
 
-        public void CalculateFCost()
+        public void CalculateFinalCost()
         {
-            FCost = GCost + HCost;
+            FinalCost = CurrentCost + ShortestCost;
         }
     }
 }
