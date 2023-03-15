@@ -8,5 +8,6 @@ namespace Inputs
     {
         public Vector2Int Position;
         public bool Pressed;
+        public bool OverUI;
     }
 }

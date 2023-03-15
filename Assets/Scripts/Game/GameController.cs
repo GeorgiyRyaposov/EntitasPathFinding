@@ -1,4 +1,5 @@
-﻿using Entitas;
+﻿using System;
+using Entitas;
 
 namespace Game
 {
@@ -6,8 +7,9 @@ namespace Game
     {
         private readonly Systems _systems;
         private readonly Systems _lockableSystems;
+        private readonly Systems _cleanupSystems;
+        private readonly Systems _charactersEditorsSystems;
         private readonly Contexts _contexts;
-        private readonly CleanUpSystems _cleanUpSystems;
 
         public GameController(Contexts contexts, GameSceneArguments gameSceneArgs, IGameSettings gameSettings)
         {
@@ -20,7 +22,8 @@ namespace Game
             
             _systems = new GameSystems(contexts);
             _lockableSystems = new LockableSystems(contexts);
-            _cleanUpSystems = new CleanUpSystems(contexts);
+            _cleanupSystems = new CleanupSystems(contexts);
+            _charactersEditorsSystems = new CharactersEditorsSystems(contexts);
         }
         
         public void Initialize()
@@ -31,15 +34,33 @@ namespace Game
         public void Execute()
         {
             _systems.Execute();
-            _systems.Cleanup();
 
             if (!_contexts.config.gameStateService.value.IsInputLocked)
             {
                 _lockableSystems.Execute();
             }
-            _lockableSystems.Cleanup();
+
+            switch (Contexts.sharedInstance.config.gameStateService.value.EditorMode)
+            {
+                case EditorModeType.None:
+                    break;
+                    
+                case EditorModeType.FirstPlayer:
+                case EditorModeType.SecondPlayer:
+                    _charactersEditorsSystems.Execute();
+                    break;
+                    
+                case EditorModeType.Obstacle:
+                    break;
+                    
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
             
-            _cleanUpSystems.Cleanup();
+            _cleanupSystems.Execute();
+            _systems.Cleanup();
+            _lockableSystems.Cleanup();
+            //_cleanupSystems.Cleanup();
         }
     }
 }

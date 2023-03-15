@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Game;
 using UnityEngine;
 
 namespace Menus
@@ -16,22 +16,39 @@ namespace Menus
             _obstaclesModeToggle.SetOnClick(SetObstacleMode);
         }
 
+        public void Show()
+        {
+            SetEditorMode(EditorModeType.None);
+            
+            _firstPlayerModeToggle.ResetState();
+            _secondPlayerModeToggle.ResetState();
+            _obstaclesModeToggle.ResetState();
+            
+            gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            SetEditorMode(EditorModeType.None);
+            gameObject.SetActive(false);
+        }
+        
         private void SetFirstPlayerMode()
         {
-            SetPlayerMode(true);
+            SetEditorMode(EditorModeType.FirstPlayer);
         }
         private void SetSecondPlayerMode()
         {
-            SetPlayerMode(false);
+            SetEditorMode(EditorModeType.SecondPlayer);
         }
-        private void SetPlayerMode(bool first)
-        {
-            
-        }
-
         private void SetObstacleMode()
         {
-            
+            SetEditorMode(EditorModeType.Obstacle);
+        }
+
+        private void SetEditorMode(EditorModeType mode)
+        {
+            Contexts.sharedInstance.config.gameStateService.value.SetEditorMode(mode);
         }
     }
 }

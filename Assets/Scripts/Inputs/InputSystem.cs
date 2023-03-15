@@ -1,6 +1,7 @@
 ﻿using Cameras;
 using Entitas;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace Inputs
@@ -14,6 +15,7 @@ namespace Inputs
         private Vector2 _movement;
         private Vector2 _cursorPosition;
         private bool _cursorPressed;
+        private bool _isOverUi;
 
         public InputSystem(Contexts contexts)
         {
@@ -59,11 +61,13 @@ namespace Inputs
                     Mathf.RoundToInt(mouseWorldPos.z)
                 ),
                 Pressed = _cursorPressed,
+                OverUI = _isOverUi,
             });
         }
 
         private void OnMove(InputAction.CallbackContext context)
         {
+            _isOverUi = EventSystem.current.IsPointerOverGameObject(context.control.device.deviceId);
             _movement = context.phase != InputActionPhase.Canceled 
                 ? context.ReadValue<Vector2>() 
                 : Vector2.zero;

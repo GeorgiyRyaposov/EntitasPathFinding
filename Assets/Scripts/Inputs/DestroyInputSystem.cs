@@ -5,8 +5,8 @@ namespace Inputs
 {
     public class DestroyInputSystem: ICleanupSystem 
     {
-        readonly IGroup<InputEntity> _group;
-        readonly List<InputEntity> _buffer = new List<InputEntity>();
+        private readonly IGroup<InputEntity> _group;
+        private readonly List<InputEntity> _buffer = new List<InputEntity>();
 
         public DestroyInputSystem(Contexts contexts) {
             _group = contexts.input.GetGroup(InputMatcher.CursorInput);

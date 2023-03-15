@@ -30,8 +30,8 @@ namespace Grids
                 }
             }
 
-            CreateCharacter(0, 0, true);
-            CreateCharacter(gridSize.x - 1, gridSize.y - 1, false);
+            CreateCharacter(0, 0, true, 0);
+            CreateCharacter(gridSize.x - 1, gridSize.y - 1, false, 1);
         }
         
         private void CreateCell(int x, int y, Transform root)
@@ -48,9 +48,9 @@ namespace Grids
             entity.AddCellState((int)ECellState.None);
         }
         
-        private void CreateCharacter(int x, int y, bool active)
+        private void CreateCharacter(int x, int y, bool active, int type)
         {
-            _contexts.game.CreateCharacter(x, y, active);
+            _contexts.game.CreateCharacter(x, y, active, type);
         }
     }
 }

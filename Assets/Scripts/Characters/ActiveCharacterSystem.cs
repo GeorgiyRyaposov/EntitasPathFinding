@@ -2,14 +2,14 @@
 using Entitas;
 using UnityEngine;
 
-namespace Inputs
+namespace Characters
 {
-    public class CursorPositionSystem : ReactiveSystem<InputEntity>
+    public class ActiveCharacterSystem : ReactiveSystem<InputEntity>
     {
         private readonly Contexts _contexts;
         private readonly IGroup<GameEntity> _characters;
 
-        public CursorPositionSystem(Contexts contexts) : base(contexts.input)
+        public ActiveCharacterSystem(Contexts contexts) : base(contexts.input)
         {
             _contexts = contexts;
             _characters = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Character));

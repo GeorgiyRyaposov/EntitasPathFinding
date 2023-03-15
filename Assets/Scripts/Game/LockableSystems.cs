@@ -1,4 +1,4 @@
-﻿using Inputs;
+﻿using Characters;
 using Paths;
 
 namespace Game
@@ -7,7 +7,7 @@ namespace Game
     {
         public LockableSystems(Contexts contexts)
         {
-            Add(new CursorPositionSystem(contexts));
+            Add(new ActiveCharacterSystem(contexts));
             Add(new PathFindingSystem(contexts));
             Add(new FollowPathSystem(contexts));
         }
