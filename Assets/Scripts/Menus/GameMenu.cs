@@ -27,6 +27,11 @@ namespace Menus
 
         private void OnEndTurn()
         {
+            if (Contexts.sharedInstance.config.gameStateService.value.IsInputLocked)
+            {
+                return;
+            }
+        
             foreach (var character in _characters)
             {
                 character.character.Active = !character.character.Active;

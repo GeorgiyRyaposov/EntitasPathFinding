@@ -42,6 +42,7 @@ namespace Paths
         private IEnumerator FollowPath(GameEntity character, List<Vector2Int> path)
         {
             LockInput(true);
+            LockUI(true);
             
             var cell = _contexts.game.GetCellWithPosition(path[0]);
             cell.isWalkable = true;
@@ -58,11 +59,16 @@ namespace Paths
             }
             
             LockInput(false);
+            LockUI(false);
         }
 
         private void LockInput(bool lockInput)
         {
             _contexts.config.gameStateService.value.LockInput(lockInput);
+        }
+        private void LockUI(bool lockUI)
+        {
+            _contexts.config.gameStateService.value.LockUI(lockUI);
         }
 
         private GameEntity GetActiveCharacter()

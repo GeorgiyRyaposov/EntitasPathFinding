@@ -4,12 +4,17 @@ namespace Game
 {
     public class GameStateService : IGameStateService
     {
-        public bool IsInputLocked { get; private set; } = true;
-        public void LockInput(bool lockInput)
+        public bool IsInputLocked { get; private set; }
+        public void LockInput(bool lockUI)
         {
-            IsInputLocked = lockInput;
+            IsInputLocked = lockUI;
         }
         
+        public bool IsUILocked { get; private set; }
+        public void LockUI(bool lockUI)
+        {
+            IsUILocked = lockUI;
+        }
         
         public EditorModeType EditorMode { get; private set; }
         public void SetEditorMode(EditorModeType editorMode)
@@ -22,7 +27,10 @@ namespace Game
     public interface IGameStateService
     {
         bool IsInputLocked { get; }
-        void LockInput(bool lockInput);
+        void LockInput(bool lockUI);
+        
+        bool IsUILocked { get; }
+        void LockUI(bool lockUI);
         
         EditorModeType EditorMode { get; }
         void SetEditorMode(EditorModeType editorMode);

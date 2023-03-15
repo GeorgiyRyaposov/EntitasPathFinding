@@ -43,6 +43,11 @@ namespace Menus
 
         private void OnButtonClick()
         {
+            if (Contexts.sharedInstance.config.gameStateService.value.IsUILocked)
+            {
+                return;
+            }
+            
             _isSelected = !_isSelected;
             UpdateVisualState();
             
