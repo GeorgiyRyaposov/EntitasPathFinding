@@ -32,6 +32,15 @@ namespace Menus
             UpdateVisualState();
         }
 
+        public void SetToggleOn()
+        {
+            if (!_isSelected)
+            {
+                OnButtonClick();
+            }
+        }
+        
+
         private void OnButtonClick()
         {
             _isSelected = !_isSelected;

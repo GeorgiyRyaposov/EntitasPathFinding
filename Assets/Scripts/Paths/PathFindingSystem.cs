@@ -40,7 +40,17 @@ namespace Paths
 
                 HighlightPath(path);
 
-                if (request.FollowPath)
+                var hasPath = path.Count > 0;
+                if (!hasPath)
+                {
+                    var cell = _contexts.game.GetCellWithPosition(request.Finish);
+                    if (cell != null)
+                    {
+                        cell.cellState.Value = (int) ECellState.Error;
+                    }
+                }
+
+                if (hasPath && request.FollowPath)
                 {
                     var followPath = _contexts.game.CreateEntity();
                     followPath.AddFollowPath(path);
@@ -112,7 +122,6 @@ namespace Paths
             _pathNodes[startNode.Index] = startNode;
 
             _openList.Clear();
-            //var closedList = new NativeList<int>(Allocator.Temp);
             _openList.Add(startNode.Index);
 
             while (_openList.Count > 0)
@@ -131,9 +140,7 @@ namespace Paths
                         break;
                     }
                 }
-
-                //closedList.Add(currentNodeIndex);
-
+                
                 var currentNode = _pathNodes[currentNodeIndex];
                 for (var i = 0; i < _neighboursIndexes.Length; i++)
                 {
@@ -145,15 +152,9 @@ namespace Paths
                     }
 
                     var neighbourIndex = SquareGridCellUtil.CalculateIndex(neighbourCell.x, neighbourCell.y, _gridSize.x);
-                    // if (closedList.Contains(neighbourIndex))
-                    // {
-                    //     //already searched
-                    //     continue;
-                    // }
-
+                    
                     if (!_pathNodes[neighbourIndex].IsWalkable)
                     {
-                        //closedList.Add(neighbourIndex);
                         continue;
                     }
 

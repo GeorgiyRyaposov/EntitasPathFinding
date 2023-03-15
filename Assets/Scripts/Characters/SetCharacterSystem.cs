@@ -52,7 +52,6 @@ namespace Characters
                 var targetCharacter = GetCharacter(targetCharacterType);
                 if (targetCharacter != null)
                 {
-                    Debug.Log($"<color=green>destroy char</color>");
                     targetCharacter.isDestroyed = true;
                     cell = _contexts.game.GetCellWithPosition(targetCharacter.cellPosition.Value);
                     if (cell != null)

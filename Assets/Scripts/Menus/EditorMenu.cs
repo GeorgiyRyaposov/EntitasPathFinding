@@ -19,6 +19,7 @@ namespace Menus
         public void Show()
         {
             SetEditorMode(EditorModeType.None);
+            LockInput(true);
             
             _firstPlayerModeToggle.ResetState();
             _secondPlayerModeToggle.ResetState();
@@ -30,6 +31,7 @@ namespace Menus
         public void Hide()
         {
             SetEditorMode(EditorModeType.None);
+            LockInput(false);
             gameObject.SetActive(false);
         }
         
@@ -49,6 +51,11 @@ namespace Menus
         private void SetEditorMode(EditorModeType mode)
         {
             Contexts.sharedInstance.config.gameStateService.value.SetEditorMode(mode);
+        }
+
+        private void LockInput(bool lockInput)
+        {
+            Contexts.sharedInstance.config.gameStateService.value.LockInput(lockInput);
         }
     }
 }

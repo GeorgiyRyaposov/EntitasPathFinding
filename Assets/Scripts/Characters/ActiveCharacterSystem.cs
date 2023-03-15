@@ -26,6 +26,11 @@ namespace Characters
         {
             foreach (var entity in entities)
             {
+                if (entity.cursorInput.value.OverUI)
+                {
+                    continue;
+                }
+                
                 var activeCharacter = GetActiveCharacter();
                 
                 var position = entity.cursorInput.value.Position;
