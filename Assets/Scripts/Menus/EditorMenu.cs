@@ -1,4 +1,5 @@
-﻿using Game;
+﻿using Entitas;
+using Game;
 using UnityEngine;
 
 namespace Menus
@@ -9,11 +10,15 @@ namespace Menus
         [SerializeField] private CustomToggle _secondPlayerModeToggle;
         [SerializeField] private CustomToggle _obstaclesModeToggle;
 
+        private IGroup<GameEntity> _cells;
+        
         private void Start()
         {
             _firstPlayerModeToggle.SetOnClick(SetFirstPlayerMode);
             _secondPlayerModeToggle.SetOnClick(SetSecondPlayerMode);
             _obstaclesModeToggle.SetOnClick(SetObstacleMode);
+            
+            _cells = Contexts.sharedInstance.game.GetGroup(GameMatcher.AllOf(GameMatcher.Cell, GameMatcher.CellPosition));
         }
 
         public void Show()
@@ -26,6 +31,8 @@ namespace Menus
             _obstaclesModeToggle.ResetState();
             
             gameObject.SetActive(true);
+            
+            ClearCellsState();
         }
 
         public void Hide()
@@ -56,6 +63,19 @@ namespace Menus
         private void LockInput(bool lockInput)
         {
             Contexts.sharedInstance.config.gameStateService.value.LockInput(lockInput);
+        }
+        
+        private void ClearCellsState()
+        {
+            if (_cells == null)
+            {
+                return;
+            }
+            
+            foreach (var cell in _cells)
+            {
+                cell.ReplaceCellState(0);
+            }
         }
     }
 }

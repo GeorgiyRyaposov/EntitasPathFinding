@@ -7,6 +7,6 @@ namespace Inputs
     [Input, Unique, Cleanup(CleanupMode.DestroyEntity)]
     public sealed class CameraPositionInput : IComponent
     {
-        public Vector2 Value;
+        public Vector3 Value;
     }
 }

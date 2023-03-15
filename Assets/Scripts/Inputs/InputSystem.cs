@@ -12,7 +12,7 @@ namespace Inputs
         private readonly ProjectInputActions _inputActions;
         private readonly ICameraView _cameraView;
 
-        private Vector2 _movement;
+        private Vector3 _movement;
         private Vector2 _cursorPosition;
         private bool _cursorPressed;
         private bool _isOverUi;
@@ -26,6 +26,9 @@ namespace Inputs
 
             _inputActions.Player.CameraMove.performed += OnMove;
             _inputActions.Player.CameraMove.canceled += OnMove;
+            
+            _inputActions.Player.CameraMoveVertical.performed += OnMoveVertical;
+            _inputActions.Player.CameraMoveVertical.canceled += OnMoveVertical;
             
             _inputActions.Player.Cursor.started += OnCursor;
             _inputActions.Player.Cursor.performed += OnCursor;
@@ -69,9 +72,18 @@ namespace Inputs
 
         private void OnMove(InputAction.CallbackContext context)
         {
-            _movement = context.phase != InputActionPhase.Canceled 
+            var value = context.phase != InputActionPhase.Canceled 
                 ? context.ReadValue<Vector2>() 
                 : Vector2.zero;
+
+            _movement.x = value.x;
+            _movement.z = value.y;
+        }
+        private void OnMoveVertical(InputAction.CallbackContext context)
+        {
+            _movement.y = context.phase != InputActionPhase.Canceled 
+                ? context.ReadValue<float>() 
+                : 0f;
         }
 
         private void OnCursor(InputAction.CallbackContext context)

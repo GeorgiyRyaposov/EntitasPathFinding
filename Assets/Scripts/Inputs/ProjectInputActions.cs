@@ -29,6 +29,14 @@ namespace Inputs
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""CameraMoveVertical"",
+                    ""type"": ""Value"",
+                    ""id"": ""91de8181-e3ef-4d9c-859e-401bc2c584d6"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Cursor"",
                     ""type"": ""Value"",
                     ""id"": ""d38bb720-27dc-4a74-8f97-86795d65cfea"",
@@ -265,6 +273,39 @@ namespace Inputs
                     ""action"": ""CursorClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""QE"",
+                    ""id"": ""8d13822d-b836-46c3-a357-a6f301a3ab7b"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMoveVertical"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""be05f9b3-f18d-43fc-aa48-7a9941bfece7"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraMoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""87f32be5-3c83-4c3a-9152-237d1a34619b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CameraMoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -841,6 +882,7 @@ namespace Inputs
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_CameraMove = m_Player.FindAction("CameraMove", throwIfNotFound: true);
+            m_Player_CameraMoveVertical = m_Player.FindAction("CameraMoveVertical", throwIfNotFound: true);
             m_Player_Cursor = m_Player.FindAction("Cursor", throwIfNotFound: true);
             m_Player_CursorClick = m_Player.FindAction("CursorClick", throwIfNotFound: true);
             // UI
@@ -905,6 +947,7 @@ namespace Inputs
         private readonly InputActionMap m_Player;
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_CameraMove;
+        private readonly InputAction m_Player_CameraMoveVertical;
         private readonly InputAction m_Player_Cursor;
         private readonly InputAction m_Player_CursorClick;
         public struct PlayerActions
@@ -912,6 +955,7 @@ namespace Inputs
             private @ProjectInputActions m_Wrapper;
             public PlayerActions(@ProjectInputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @CameraMove => m_Wrapper.m_Player_CameraMove;
+            public InputAction @CameraMoveVertical => m_Wrapper.m_Player_CameraMoveVertical;
             public InputAction @Cursor => m_Wrapper.m_Player_Cursor;
             public InputAction @CursorClick => m_Wrapper.m_Player_CursorClick;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -926,6 +970,9 @@ namespace Inputs
                     @CameraMove.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMove;
                     @CameraMove.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMove;
                     @CameraMove.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMove;
+                    @CameraMoveVertical.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMoveVertical;
+                    @CameraMoveVertical.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMoveVertical;
+                    @CameraMoveVertical.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMoveVertical;
                     @Cursor.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCursor;
                     @Cursor.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCursor;
                     @Cursor.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCursor;
@@ -939,6 +986,9 @@ namespace Inputs
                     @CameraMove.started += instance.OnCameraMove;
                     @CameraMove.performed += instance.OnCameraMove;
                     @CameraMove.canceled += instance.OnCameraMove;
+                    @CameraMoveVertical.started += instance.OnCameraMoveVertical;
+                    @CameraMoveVertical.performed += instance.OnCameraMoveVertical;
+                    @CameraMoveVertical.canceled += instance.OnCameraMoveVertical;
                     @Cursor.started += instance.OnCursor;
                     @Cursor.performed += instance.OnCursor;
                     @Cursor.canceled += instance.OnCursor;
@@ -1102,6 +1152,7 @@ namespace Inputs
         public interface IPlayerActions
         {
             void OnCameraMove(InputAction.CallbackContext context);
+            void OnCameraMoveVertical(InputAction.CallbackContext context);
             void OnCursor(InputAction.CallbackContext context);
             void OnCursorClick(InputAction.CallbackContext context);
         }

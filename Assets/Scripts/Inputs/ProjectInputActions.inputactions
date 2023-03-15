@@ -14,6 +14,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "CameraMoveVertical",
+                    "type": "Value",
+                    "id": "91de8181-e3ef-4d9c-859e-401bc2c584d6",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Cursor",
                     "type": "Value",
                     "id": "d38bb720-27dc-4a74-8f97-86795d65cfea",
@@ -250,6 +258,39 @@
                     "action": "CursorClick",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "QE",
+                    "id": "8d13822d-b836-46c3-a357-a6f301a3ab7b",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraMoveVertical",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "be05f9b3-f18d-43fc-aa48-7a9941bfece7",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CameraMoveVertical",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "87f32be5-3c83-4c3a-9152-237d1a34619b",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CameraMoveVertical",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

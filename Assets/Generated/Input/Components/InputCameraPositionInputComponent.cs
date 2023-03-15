@@ -12,7 +12,7 @@ public partial class InputContext {
     public Inputs.CameraPositionInput cameraPositionInput { get { return cameraPositionInputEntity.cameraPositionInput; } }
     public bool hasCameraPositionInput { get { return cameraPositionInputEntity != null; } }
 
-    public InputEntity SetCameraPositionInput(UnityEngine.Vector2 newValue) {
+    public InputEntity SetCameraPositionInput(UnityEngine.Vector3 newValue) {
         if (hasCameraPositionInput) {
             throw new Entitas.EntitasException("Could not set CameraPositionInput!\n" + this + " already has an entity with Inputs.CameraPositionInput!",
                 "You should check if the context already has a cameraPositionInputEntity before setting it or use context.ReplaceCameraPositionInput().");
@@ -22,7 +22,7 @@ public partial class InputContext {
         return entity;
     }
 
-    public void ReplaceCameraPositionInput(UnityEngine.Vector2 newValue) {
+    public void ReplaceCameraPositionInput(UnityEngine.Vector3 newValue) {
         var entity = cameraPositionInputEntity;
         if (entity == null) {
             entity = SetCameraPositionInput(newValue);
@@ -49,14 +49,14 @@ public partial class InputEntity {
     public Inputs.CameraPositionInput cameraPositionInput { get { return (Inputs.CameraPositionInput)GetComponent(InputComponentsLookup.CameraPositionInput); } }
     public bool hasCameraPositionInput { get { return HasComponent(InputComponentsLookup.CameraPositionInput); } }
 
-    public void AddCameraPositionInput(UnityEngine.Vector2 newValue) {
+    public void AddCameraPositionInput(UnityEngine.Vector3 newValue) {
         var index = InputComponentsLookup.CameraPositionInput;
         var component = (Inputs.CameraPositionInput)CreateComponent(index, typeof(Inputs.CameraPositionInput));
         component.Value = newValue;
         AddComponent(index, component);
     }
 
-    public void ReplaceCameraPositionInput(UnityEngine.Vector2 newValue) {
+    public void ReplaceCameraPositionInput(UnityEngine.Vector3 newValue) {
         var index = InputComponentsLookup.CameraPositionInput;
         var component = (Inputs.CameraPositionInput)CreateComponent(index, typeof(Inputs.CameraPositionInput));
         component.Value = newValue;
