@@ -63,11 +63,12 @@ namespace Inputs
                 Pressed = _cursorPressed,
                 OverUI = _isOverUi,
             });
+
+            _cursorPressed = false;
         }
 
         private void OnMove(InputAction.CallbackContext context)
         {
-            _isOverUi = EventSystem.current.IsPointerOverGameObject(context.control.device.deviceId);
             _movement = context.phase != InputActionPhase.Canceled 
                 ? context.ReadValue<Vector2>() 
                 : Vector2.zero;
@@ -75,6 +76,7 @@ namespace Inputs
 
         private void OnCursor(InputAction.CallbackContext context)
         {
+            _isOverUi = EventSystem.current.IsPointerOverGameObject(context.control.device.deviceId);
             _cursorPosition = context.ReadValue<Vector2>();
         }
         

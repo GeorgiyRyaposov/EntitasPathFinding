@@ -17,12 +17,13 @@ public static class GameComponentsLookup {
     public const int CellPosition = 6;
     public const int CellState = 7;
     public const int Walkable = 8;
-    public const int FindPathRequest = 9;
-    public const int FollowPath = 10;
-    public const int Asset = 11;
-    public const int View = 12;
+    public const int Obstacle = 9;
+    public const int FindPathRequest = 10;
+    public const int FollowPath = 11;
+    public const int Asset = 12;
+    public const int View = 13;
 
-    public const int TotalComponents = 13;
+    public const int TotalComponents = 14;
 
     public static readonly string[] componentNames = {
         "CellPositionListener",
@@ -34,6 +35,7 @@ public static class GameComponentsLookup {
         "CellPosition",
         "CellState",
         "Walkable",
+        "Obstacle",
         "FindPathRequest",
         "FollowPath",
         "Asset",
@@ -50,6 +52,7 @@ public static class GameComponentsLookup {
         typeof(Grids.CellPosition),
         typeof(Grids.CellState),
         typeof(Grids.Walkable),
+        typeof(Obstacles.ObstacleComponent),
         typeof(Paths.FindPathRequest),
         typeof(Paths.FollowPathComponent),
         typeof(Views.AssetComponent),

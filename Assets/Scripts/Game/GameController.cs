@@ -8,10 +8,10 @@ namespace Game
         private readonly Systems _systems;
         private readonly Systems _lockableSystems;
         private readonly Systems _cleanupSystems;
-        private readonly Systems _charactersEditorsSystems;
+        private readonly Systems _editorsSystems;
         private readonly Contexts _contexts;
 
-        public GameController(Contexts contexts, GameSceneArguments gameSceneArgs, IGameSettings gameSettings)
+        public GameController(Contexts contexts, IGameSceneArguments gameSceneArgs, IGameSettings gameSettings)
         {
             _contexts = contexts;
             
@@ -23,7 +23,7 @@ namespace Game
             _systems = new GameSystems(contexts);
             _lockableSystems = new LockableSystems(contexts);
             _cleanupSystems = new CleanupSystems(contexts);
-            _charactersEditorsSystems = new CharactersEditorsSystems(contexts);
+            _editorsSystems = new EditorsSystems(contexts);
         }
         
         public void Initialize()
@@ -40,27 +40,16 @@ namespace Game
                 _lockableSystems.Execute();
             }
 
-            switch (Contexts.sharedInstance.config.gameStateService.value.EditorMode)
+            if (EditorMode != EditorModeType.None)
             {
-                case EditorModeType.None:
-                    break;
-                    
-                case EditorModeType.FirstPlayer:
-                case EditorModeType.SecondPlayer:
-                    _charactersEditorsSystems.Execute();
-                    break;
-                    
-                case EditorModeType.Obstacle:
-                    break;
-                    
-                default:
-                    throw new ArgumentOutOfRangeException();
+                _editorsSystems.Execute();
             }
             
             _cleanupSystems.Execute();
             _systems.Cleanup();
             _lockableSystems.Cleanup();
-            //_cleanupSystems.Cleanup();
         }
+
+        private static EditorModeType EditorMode => Contexts.sharedInstance.config.gameStateService.value.EditorMode;
     }
 }

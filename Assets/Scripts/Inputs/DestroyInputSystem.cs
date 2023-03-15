@@ -3,18 +3,24 @@ using Entitas;
 
 namespace Inputs
 {
-    public class DestroyInputSystem: ICleanupSystem 
+    public class DestroyInputSystem : ReactiveSystem<InputEntity> 
     {
-        private readonly IGroup<InputEntity> _group;
-        private readonly List<InputEntity> _buffer = new List<InputEntity>();
-
-        public DestroyInputSystem(Contexts contexts) {
-            _group = contexts.input.GetGroup(InputMatcher.CursorInput);
+        public DestroyInputSystem(Contexts contexts) : base(contexts.input) 
+        {
+        }
+        
+        protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> context)
+        { 
+            return context.CreateCollector(InputMatcher.CursorInput);
         }
 
-        public void Cleanup() {
-            foreach (var e in _group.GetEntities(_buffer)) {
-                e.Destroy();
+        protected override bool Filter(InputEntity entity) => true;
+
+        protected override void Execute(List<InputEntity> entities)
+        {
+            for (int i = 0; i < entities.Count; i++)
+            {
+                entities[i].Destroy();
             }
         }
     }

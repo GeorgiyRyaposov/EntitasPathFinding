@@ -1,12 +1,12 @@
-﻿using Characters;
+﻿using Grids;
 
 namespace Game
 {
-    public sealed class CharactersEditorsSystems : Feature
+    public sealed class EditorsSystems : Feature
     {
-        public CharactersEditorsSystems(Contexts contexts)
+        public EditorsSystems(Contexts contexts)
         {
-            Add(new SetCharacterSystem(contexts));
+            Add(new GridEditorSystem(contexts));
         }
     }
 }

@@ -21,6 +21,11 @@ namespace Common
             for (int i = 0; i < entities.Count; i++)
             {
                 var e = entities[i];
+                if (e.destroyedListener == null)
+                {
+                    continue;
+                }
+                
                 foreach (var destroyedListener in e.destroyedListener.value)
                 {
                     destroyedListener.OnDestroyed(e);
